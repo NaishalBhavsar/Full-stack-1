@@ -1,0 +1,7 @@
+// users.controller.ts (excerpt)
+@UseGuards(JwtAuthGuard, RolesGuard)
+@Roles('admin')
+@Get()
+async findAll(@Query() query: { sortBy?: string; order?: 'ASC' | 'DESC' }) {
+  return this.usersService.findAll(query);
+}
