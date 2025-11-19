@@ -1,0 +1,7 @@
+// ratings.controller.ts (excerpt)
+@Post()
+@UseGuards(JwtAuthGuard, RolesGuard)
+@Roles('normal')
+async submitRating(@Body() body: { storeId: number; rating: number }, @Req() req) {
+  return this.ratingsService.upsert(req.user.id, body.storeId, body.rating);
+}
